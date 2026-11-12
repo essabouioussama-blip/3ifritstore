@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3IFRIT | Streetwear Apparel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 20 Famous Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;900&family=Cormorant+Garamond:wght@700&family=Inter:wght@300;400;600;800&family=Montserrat:wght@400;600;800;900&family=Oswald:wght@600;700&family=Outfit:wght@600;800&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Poppins:wght@300;400;600;700&family=Press+Start+2P&family=Roboto:wght@400;700&family=Rubik:wght@600;800&family=Space+Grotesk:wght@600;700&family=Syne:wght@700;800&family=UnifrakturMaguntia&family=Work+Sans:wght@600;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f4efe6;
+            --nav-bg: #eadecc;
+            --text-color: #1a1a1a;
+            --accent-color: #8c6d3b;
+            --card-bg: #ffffff;
+            --card-border: #e2d7c5;
+            --main-font: 'Inter', sans-serif;
+            --title-font: 'Cinzel', serif;
+            --tagline-font: 'Montserrat', sans-serif;
+            --hero-title-font: 'Playfair Display', serif;
+            --hero-bg-color: #eadecc;
+            --nav-padding: 15px 40px;
+            --card-radius: 12px;
+            --hero-height: 480px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--main-font); }
+        body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 80px; transition: background 0.3s; letter-spacing: 0.3px; overflow-x: hidden; }
+
+        /* MEDIEVAL ROYAL SPLASH GATE OVERLAY */
+        #splashGate {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+
+        .gate-door {
+            position: absolute; top: 0;
+            width: 50vw; height: 100vh;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a150e 100%);
+            border: 4px solid var(--accent-color);
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.9);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 1;
+        }
+
+        .gate-door-left { left: 0; border-right: 2px solid var(--accent-color); }
+        .gate-door-right { right: 0; border-left: 2px solid var(--accent-color); }
+
+        .splash-content {
+            text-align: center; padding: 40px 20px;
+            border: 2px solid var(--accent-color);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px; max-width: 550px; width: 90%;
+            position: relative; z-index: 2;
+            box-shadow: 0 0 60px rgba(140, 109, 59, 0.35);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .splash-logo {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 50px; font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 50%, #ffffff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 10px; margin-bottom: 10px; text-transform: uppercase;
+        }
+
+        .splash-sub {
+            color: #ccc; font-size: 10px; letter-spacing: 4px;
+            text-transform: uppercase; margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif; font-weight: 600;
+        }
+
+        .enter-btn {
+            background: transparent; color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 14px 35px; font-size: 11px; font-weight: 800;
+            letter-spacing: 3px; text-transform: uppercase;
+            cursor: pointer; transition: all 0.4s ease; border-radius: 30px;
+        }
+
+        .enter-btn:hover {
+            background: var(--accent-color); color: #000;
+            box-shadow: 0 0 30px rgba(140, 109, 59, 0.8); transform: scale(1.05);
+        }
+
+        /* Top Navbar Responsive */
+        .top-navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: var(--nav-bg); border-bottom: 1px solid rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; min-height: 70px; flex-wrap: wrap; }
+        .brand-logo-top { display: flex; align-items: center; justify-content: center; }
+        .brand-logo-top img { height: 50px; width: auto; object-fit: contain; max-width: 250px; filter: contrast(1.1); transition: height 0.2s ease; }
+
+        .nav-links { display: flex; gap: 15px; font-size: 10px; font-weight: 800; text-transform: uppercase; list-style: none; letter-spacing: 1px; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color: var(--text-color); text-decoration: none; transition: 0.3s; opacity: 0.85; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent-color); }
+        
+        .nav-icons { display: flex; gap: 15px; align-items: center; }
+        .icon-btn { background: transparent; border: none; color: var(--text-color); font-size: 16px; cursor: pointer; position: relative; }
+        .cart-badge { position: absolute; top: -6px; right: -10px; background: var(--accent-color); color: #fff; font-size: 8px; padding: 2px 5px; border-radius: 50%; font-weight: bold; }
+        .lang-selector { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); padding: 4px 8px; border-radius: 20px; cursor: pointer; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+
+        header { text-align: center; padding: 30px 15px 15px 15px; max-width: 1200px; margin: 0 auto; }
+        .logo-wrapper { position: relative; display: inline-block; margin-bottom: 10px; }
+
+        .main-title-logo-img { height: 90px; width: auto; object-fit: contain; filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.12)); }
+        .main-graffiti-logo { font-family: var(--title-font); font-size: 55px; font-weight: 900; color: var(--text-color); text-transform: uppercase; letter-spacing: 8px; line-height: 1; display: block; background: linear-gradient(180deg, var(--text-color) 30%, var(--accent-color) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tagline { font-family: var(--tagline-font); font-size: 10px; font-weight: 800; color: var(--accent-color); letter-spacing: 4px; text-transform: uppercase; margin-top: 14px; margin-bottom: 20px; word-break: break-word; }
+
+        /* Dynamic Container Sections */
+        .hero-section { max-width: 1300px; margin: 15px auto 30px auto; padding: 0 15px; display: flex; flex-direction: column; gap: 20px; }
+        
+        .hero-content { 
+            position: relative;
+            width: 100%;
+            padding: 40px 20px; 
+            text-align: center; 
+            background: var(--hero-bg-color); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--card-radius); 
+            overflow: hidden;
+            z-index: 1;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+
+        .bg-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover !important;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .animated-wave-bg {
+            background: linear-gradient(-45deg, #eadecc, #f4efe6, #dfd3c3, #c8b89e) !important;
+            background-size: 400% 400% !important;
+            animation: waveGradient 8s ease infinite !important;
+        }
+
+        @keyframes waveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-title { font-family: var(--hero-title-font); font-size: 28px; font-weight: 900; color: #1a1a1a; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 2; transition: color 0.3s; }
+        .hero-desc { font-size: 12px; color: #555; margin-bottom: 20px; font-weight: 400; letter-spacing: 0.5px; position: relative; z-index: 2; transition: color 0.3s; }
+        .hero-btn { background: var(--text-color); color: var(--bg-color); border: 1px solid var(--text-color); padding: 12px 28px; font-size: 10px; font-weight: 800; border-radius: 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; position: relative; z-index: 2; }
+
+        .hero-banner { 
+            position: relative; 
+            width: 100%; 
+            height: 280px; 
+            border-radius: var(--card-radius); 
+            overflow: hidden; 
+            background-color: #dfd3c3;
+            border: 1px solid var(--card-border);
+            z-index: 1;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+
+        .hotspot { 
+            position: absolute; 
+            background: rgba(255, 255, 255, 0.9); 
+            color: #000; 
+            font-size: 9px; 
+            font-weight: 800; 
+            padding: 8px 16px; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+            transition: all 0.3s; 
+            z-index: 2;
+            backdrop-filter: blur(5px);
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 15px; }
+        .section-title { font-family: var(--title-font); font-size: 18px; font-weight: 900; color: var(--text-color); margin: 35px 0 20px 0; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
+
+        .designs-scroll { display: flex; justify-content: flex-start; gap: 12px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; -webkit-overflow-scrolling: touch; }
+        .design-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--card-radius); padding: 10px; min-width: 120px; width: 120px; text-align: center; cursor: pointer; position: relative; flex-shrink: 0; }
+        .design-card.selected { border: 2px solid var(--accent-color); }
+        .design-img-box { width: 100%; height: 80px; background: var(--bg-color); border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .design-card img { width: 100%; height: 100%; object-fit: contain; }
+        .design-card span { display: block; font-size: 10px; margin-top: 6px; font-weight: 700; color: var(--text-color); text-transform: uppercase; }
+
+        /* DESIGN QUICK ORDER BOX */
+        .design-order-box {
+            display: none;
+            max-width: 100%;
+            margin: 0 auto 25px auto;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: var(--card-radius);
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* GENDER & CATEGORY FILTER TABS FOR MOBILE */
+        .gender-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+        .gender-btn { background: var(--card-bg); color: var(--text-color); border: 2px solid var(--card-border); padding: 10px 18px; border-radius: 30px; cursor: pointer; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; flex: 1; min-width: 100px; text-align: center; }
+        .gender-btn.active, .gender-btn:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+
+        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 10px 0 25px 0; }
+        .tab-btn { background: transparent; color: var(--text-color); border: 1px solid var(--card-border); padding: 8px 16px; border-radius: 30px; cursor: pointer; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .tab-btn.active, .tab-btn:hover { background: var(--text-color); color: var(--bg-color); border-color: var(--text-color); }
+
+        .product-grid-wrapper {
+            position: relative;
+            border-radius: var(--card-radius);
+            padding: 10px;
+            overflow: hidden;
+            z-index: 1;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+
+        /* MOBILE PRODUCT GRID (2 COLUMNS FOR PHONE / 4 FOR DESKTOP) */
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 40px; z-index: 2; position: relative; }
+        @media (min-width: 768px) { .product-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+        @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
+
+        .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--card-radius); padding: 10px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .gender-tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.8); color: #fff; font-size: 8px; font-weight: bold; padding: 3px 6px; border-radius: 10px; text-transform: uppercase; z-index: 5; }
+        
+        .preview-area { width: 100%; aspect-ratio: 1 / 1; background: var(--bg-color); border-radius: 8px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .product-img { width: 100%; height: 100%; object-fit: contain; }
+
+        .card-title { font-size: 11px; font-weight: 700; margin-bottom: 2px; color: var(--text-color); text-transform: uppercase; line-height: 1.2; }
+        .card-price { font-size: 11px; color: var(--accent-color); font-weight: 800; margin-bottom: 8px; }
+
+        .input-group { margin-bottom: 8px; }
+        .input-group label { display: block; font-size: 9px; color: #777; margin-bottom: 3px; font-weight: 700; text-transform: uppercase; }
+        .input-group select, .input-group input { width: 100%; padding: 6px 8px; background: var(--bg-color); border: 1px solid var(--card-border); border-radius: 6px; color: var(--text-color); font-size: 10px; }
+
+        .order-btn { background: var(--text-color); color: var(--bg-color); border: none; width: 100%; padding: 10px 5px; border-radius: 6px; font-weight: 800; cursor: pointer; font-size: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        .delete-item-btn { background: #b91c1c; color: #fff; border: none; width: 100%; padding: 6px 5px; border-radius: 6px; font-weight: 800; cursor: pointer; font-size: 9px; margin-top: 5px; text-transform: uppercase; }
+
+        /* Admin Controls */
+        .admin-section { background: var(--nav-bg); border: 2px dashed var(--accent-color); border-radius: 16px; padding: 20px 15px; margin-top: 40px; }
+        .admin-section h2 { color: var(--accent-color); margin-bottom: 15px; font-size: 16px; text-align: center; font-family: var(--title-font); letter-spacing: 1px; }
+        .admin-box { margin-bottom: 18px; background: var(--bg-color); padding: 15px; border-radius: 10px; border: 1px solid var(--card-border); }
+        .admin-box h3 { font-size: 11px; margin-bottom: 10px; color: var(--text-color); border-bottom: 1px solid var(--card-border); padding-bottom: 4px; text-transform: uppercase; }
+        .admin-form { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        @media (min-width: 600px) { .admin-form { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
+        .admin-form input, .admin-form select { padding: 8px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; color: var(--text-color); font-size: 10px; }
+        
+        .history-btn-group { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; flex-wrap: wrap; }
+        .history-btn { background: var(--text-color); color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 10px; text-transform: uppercase; }
+        .remove-bg-btn { background: #b91c1c; color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 9px; text-transform: uppercase; margin-top: 4px; }
+        .save-btn { background: #16a34a; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 10px; text-transform: uppercase; }
+        .update-item-btn { background: var(--accent-color); color: #fff; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 800; cursor: pointer; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+
+        .range-group { display: flex; flex-direction: column; gap: 4px; background: var(--card-bg); padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); }
+        .range-group label { font-size: 9px; font-weight: 700; display: flex; justify-content: space-between; text-transform: uppercase; }
+        .add-btn { background: var(--accent-color); color: #fff; font-weight: 800; border: none; padding: 10px; border-radius: 6px; cursor: pointer; grid-column: 1 / -1; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* LIVE PREVIEW FULL SITE FLOATING WINDOW FOR MOBILE */
+        .admin-live-preview-box {
+            display: none;
+            position: fixed;
+            bottom: 10px; right: 10px; left: 10px;
+            height: 400px;
+            background: #ffffff;
+            border: 3px solid var(--accent-color);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            z-index: 9999;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        @media (min-width: 600px) {
+            .admin-live-preview-box { left: auto; width: 380px; height: 500px; bottom: 20px; right: 20px; }
+        }
+        .preview-header { background: var(--text-color); color: #fff; padding: 8px 12px; font-size: 10px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; }
+        .preview-content-area { flex: 1; overflow-y: auto; overflow-x: hidden; background: var(--bg-color); padding: 8px; }
+    </style>
+</head><body>
+
+    <!-- MEDIEVAL ROYAL SPLASH GATE -->
+    <div id="splashGate">
+        <div class="gate-door gate-door-left" id="doorLeft"></div>
+        <div class="gate-door gate-door-right" id="doorRight"></div>
+        <div class="splash-content" id="splashContent">
+            <div class="splash-logo">3IFRIT</div>
+            <div class="splash-sub" data-key="tagline">Streetwear Apparel & Exclusive Drops</div>
+            <button class="enter-btn" onclick="closeSplashGate()" data-key="btn_enter">Enter Store</button>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <div class="top-navbar" id="topNavbar">
+        <div class="brand-logo-top">
+            <span id="topNavbarTextLogo" style="font-family: var(--title-font); font-weight: 900; font-size: 22px; color: var(--text-color); cursor: pointer; letter-spacing: 2px;">3IFRIT</span>
+            <img id="topNavbarLogo" src="" alt="Logo" style="display: none; height: 50px; width: auto; object-fit: contain;">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" data-key="nav_home">Home</a></li>
+            <li><a href="#productGrid" onclick="filterGender('men')" data-key="nav_men">Men</a></li>
+            <li><a href="#productGrid" onclick="filterGender('women')" data-key="nav_women">Women</a></li>
+            <li><a href="#productGrid" onclick="filterGender('all')" data-key="nav_shop">All</a></li>
+            <li><a href="#designsContainer" data-key="nav_designs">Designs</a></li>
+            <li><a href="#adminSection" data-key="nav_admin">Admin</a></li>
+        </ul>
+        <div class="nav-icons">
+            <select class="lang-selector" id="langSelector" onchange="changeLanguage()">
+                <option value="en">🇺🇸 EN</option>
+                <option value="fr">🇫🇷 FR</option>
+                <option value="ar">🇲🇦 AR</option>
+                <option value="es">🇪🇸 ES</option>
+            </select>
+            <button class="icon-btn" id="searchIconBtn">🔍</button>
+            <button class="icon-btn" id="wishlistIconBtn">❤️</button>
+            <button class="icon-btn" id="cartIconBtn"><span id="cartIconDisplay">🛒</span> <span class="cart-badge" id="cartBadge">0</span></button>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo-wrapper" id="mainHeaderLogoBox">
+            <span class="main-graffiti-logo" id="textMainLogo">3IFRIT</span>
+            <img id="imgMainLogo" class="main-title-logo-img" src="" style="display: none;" alt="3IFRIT Logo">
+        </div>
+        <div class="tagline" id="taglineText" data-key="tagline">STREETWEAR APPAREL & LIMITED DROPS</div>
+    </header>
+
+    <div class="hero-section">
+        <div class="hero-content" id="heroContentBox">
+            <div class="hero-title" id="heroTitleText" data-key="hero_title">NEW SEASON DROP</div>
+            <div class="hero-desc" id="heroDescText" data-key="hero_desc">Explore our latest streetwear collection crafted for exclusivity.</div>
+            <button class="hero-btn" onclick="document.getElementById('productGrid').scrollIntoView({behavior: 'smooth'})" data-key="shop_now">EXPLORE COLLECTION</button>
+        </div>
+
+        <div class="hero-banner" id="heroBanner">
+            <div class="hotspot" style="top: 25%; left: 8%;" onclick="scrollToCategory('hoodie')" data-key="cat_hoodie">Hoodies</div>
+            <div class="hotspot" style="top: 50%; left: 8%;" onclick="scrollToCategory('tshirt')" data-key="cat_tshirt">T-Shirts</div>
+            <div class="hotspot" style="top: 75%; left: 8%;" onclick="scrollToCategory('custom')" data-key="cat_custom">Custom Request</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-title" data-key="section1">Select Available Design</div>
+        <div class="designs-scroll" id="designsContainer"></div>
+
+        <!-- QUICK DESIGN ORDER BOX FOR MOBILE -->
+        <div class="design-order-box" id="designOrderBox">
+            <h3 id="selectedDesignTitleName" style="margin-bottom: 8px; text-transform: uppercase; font-size: 12px; color: var(--accent-color);">Selected Design: <span></span></h3>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 10px;">
+                <div>
+                    <label style="font-size: 9px; font-weight: bold; display: block; margin-bottom: 3px;">Choose Apparel Type:</label>
+                    <select id="designApparelType" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--card-border); font-size: 10px;">
+                        <option value="Standard Hoodie">Standard Hoodie (هودي عادي)</option>
+                        <option value="Zip Hoodie">Zip Hoodie (هودي بسلسلة)</option>
+                        <option value="Oversized T-Shirt">Oversized T-Shirt (تيشيرت عادي)</option>
+                        <option value="Crop Top Hoodie">Crop Top Hoodie (نساء)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size: 9px; font-weight: bold; display: block; margin-bottom: 3px;">Choose Size / Age:</label>
+                    <select id="designApparelSize" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--card-border); font-size: 10px;">
+                        <optgroup label="Kids">
+                            <option value="4-6 Years">4 - 6 Years</option>
+                            <option value="8-10 Years">8 - 10 Years</option>
+                            <option value="12-14 Years">12 - 14 Years</option>
+                        </optgroup>
+                        <optgroup label="Adults">
+                            <option value="S">Small (S)</option>
+                            <option value="M" selected>Medium (M)</option>
+                            <option value="L">Large (L)</option>
+                            <option value="XL">Extra Large (XL)</option>
+                            <option value="XXL">2XL</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <button class="order-btn" onclick="orderDesignDirectWhatsApp()" data-key="order_whatsapp">Order This Design via WhatsApp</button>
+        </div>
+
+        <div class="section-title" data-key="section2">Choose Apparel & Category</div>
+
+        <div class="gender-nav">
+            <button class="gender-btn active" onclick="filterGender('all', this)" data-key="gender_all">🔥 All</button>
+            <button class="gender-btn" onclick="filterGender('men', this)" data-key="gender_men">⚡ Men (الدراري)</button>
+            <button class="gender-btn" onclick="filterGender('women', this)" data-key="gender_women">✨ Women (البنات)</button>
+        </div>
+
+        <div class="category-nav">
+            <button class="tab-btn active" onclick="filterCategory('all', this)" data-key="cat_all">All Types</button>
+            <button class="tab-btn" onclick="filterCategory('hoodie', this)" data-key="cat_hoodie">Hoodies</button>
+            <button class="tab-btn" onclick="filterCategory('tshirt', this)" data-key="cat_tshirt">T-Shirts</button>
+            <button class="tab-btn" onclick="filterCategory('custom', this)" data-key="cat_custom">Custom Orders</button>
+        </div>
+
+        <div class="product-grid-wrapper" id="productGridWrapper">
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+
+        <!-- ADMIN PANEL -->
+        <div class="admin-section" id="adminSection">
+            <h2 data-key="admin_panel">⚙ Owner Management Panel</h2>
+
+            <div class="history-btn-group">
+                <button class="history-btn" id="undoBtn" onclick="undo()" disabled data-key="btn_undo">↩ Undo</button>
+                <button class="history-btn" id="redoBtn" onclick="redo()" disabled data-key="btn_redo">↪ Redo</button>
+                <button class="history-btn" style="background:var(--accent-color);" onclick="toggleLivePreviewWindow()" data-key="btn_preview">👁️ Preview Screen</button>
+                <button class="save-btn" onclick="commitChanges()" data-key="btn_save">✔ Save Changes</button>
+            </div>
+
+            <!-- TAGLINE CONTROL -->
+            <div class="admin-box">
+                <h3 style="color:var(--accent-color);" data-key="title_tagline_customizer">✍️ Sub-Title Tagline Customizer</h3>
+                <div class="admin-form">
+                    <input type="text" id="customTaglineInput" placeholder="STREETWEAR APPAREL & LIMITED DROPS">
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_select_font">Select Font (20 Famous Fonts):</label>
+                        <select id="fontFamilySelector" onchange="previewFontChange(this.value)">
+                            <option value="'Montserrat', sans-serif" style="font-family: 'Montserrat', sans-serif;">1. Montserrat</option>
+                            <option value="'Cinzel', serif" style="font-family: 'Cinzel', serif;">2. Cinzel</option>
+                            <option value="'Cinzel Decorative', serif" style="font-family: 'Cinzel Decorative', serif;">3. Cinzel Decorative</option>
+                            <option value="'Bebas Neue', sans-serif" style="font-family: 'Bebas Neue', sans-serif;">4. Bebas Neue</option>
+                            <option value="'Anton', sans-serif" style="font-family: 'Anton', sans-serif;">5. Anton</option>
+                            <option value="'Oswald', sans-serif" style="font-family: 'Oswald', sans-serif;">6. Oswald</option>
+                            <option value="'Permanent Marker', cursive" style="font-family: 'Permanent Marker', cursive;">7. Permanent Marker</option>
+                            <option value="'Syne', sans-serif" style="font-family: 'Syne', sans-serif;">8. Syne</option>
+                            <option value="'Space Grotesk', sans-serif" style="font-family: 'Space Grotesk', sans-serif;">9. Space Grotesk</option>
+                            <option value="'UnifrakturMaguntia', cursive" style="font-family: 'UnifrakturMaguntia', cursive;">10. UnifrakturMaguntia</option>
+                            <option value="'Playfair Display', serif" style="font-family: 'Playfair Display', serif;">11. Playfair Display</option>
+                            <option value="'Poppins', sans-serif" style="font-family: 'Poppins', sans-serif;">12. Poppins</option>
+                            <option value="'Inter', sans-serif" style="font-family: 'Inter', sans-serif;">13. Inter</option>
+                            <option value="'Roboto', sans-serif" style="font-family: 'Roboto', sans-serif;">14. Roboto</option>
+                            <option value="'Outfit', sans-serif" style="font-family: 'Outfit', sans-serif;">15. Outfit</option>
+                            <option value="'Cormorant Garamond', serif" style="font-family: 'Cormorant Garamond', serif;">16. Cormorant Garamond</option>
+                            <option value="'Rubik', sans-serif" style="font-family: 'Rubik', sans-serif;">17. Rubik</option>
+                            <option value="'Work Sans', sans-serif" style="font-family: 'Work Sans', sans-serif;">18. Work Sans</option>
+                            <option value="'Zilla Slab', serif" style="font-family: 'Zilla Slab', serif;">19. Zilla Slab</option>
+                            <option value="'Press Start 2P', cursive" style="font-family: 'Press Start 2P', cursive;">20. Press Start 2P</option>
+                        </select>
+                    </div>
+                    <div class="range-group">
+                        <label><span data-key="lbl_tagline_size">Tagline Size:</span> <span id="taglineSizeVal">10px</span></label>
+                        <input type="range" min="8" max="28" value="10" oninput="adjustTaglineSize(this.value)">
+                    </div>
+                    <button class="update-item-btn" onclick="updateTaglineText()" data-key="btn_update_tagline">UPDATE TAGLINE</button>
+                </div>
+            </div>
+
+            <!-- HERO TEXTS & COLOR CONTROL -->
+            <div class="admin-box">
+                <h3 style="color:var(--accent-color);" data-key="title_hero_control">🌟 Hero Title, Description & Color Control</h3>
+                <div class="admin-form">
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_hero_title">Hero Title Text:</label>
+                        <input type="text" id="customHeroTitleInput" placeholder="NEW SEASON DROP">
+                    </div>
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_hero_desc">Hero Description Text:</label>
+                        <input type="text" id="customHeroDescInput" placeholder="Explore our latest streetwear collection...">
+                    </div>
+                    <div>
+                        <label style="font-size: 9px;">Hero Title Color:</label>
+                        <input type="color" id="heroTitleColorInput" value="#1a1a1a" style="height: 35px; cursor: pointer; width:100%;">
+                    </div>
+                    <div>
+                        <label style="font-size: 9px;">Hero Description Color:</label>
+                        <input type="color" id="heroDescColorInput" value="#555555" style="height: 35px; cursor: pointer; width:100%;">
+                    </div>
+                    <button class="update-item-btn" onclick="updateHeroTextsAndColors()" data-key="btn_update_hero">UPDATE HERO CONTENT & COLORS</button>
+                </div>
+            </div>
+
+            <!-- HERO SECTION BACKGROUND -->
+            <div class="admin-box">
+                <h3 style="color:var(--accent-color);" data-key="title_hero_bg">🖼️ Hero Section Background (Media & Animated)</h3>
+                <div class="admin-form">
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_upload_bg">Upload Image/GIF/Video Background:</label>
+                        <input type="file" id="heroBgFileInput" accept="image/*,video/*">
+                        <button class="update-item-btn" onclick="applyHeroBgUpload()" data-key="btn_update_bg">UPDATE HERO BG</button>
+                        <button class="remove-bg-btn" onclick="removeContainerBackground('heroContentBox')" data-key="btn_remove_bg">🗑️ Remove Background</button>
+                    </div>
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_wave_bg">Wave Animated Background:</label>
+                        <button class="history-btn" style="width:100%; margin-top:5px;" onclick="toggleAnimatedHeroBg()" data-key="btn_toggle_wave">TOGGLE WAVE EFFECT</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIES BANNER BACKGROUND -->
+            <div class="admin-box">
+                <h3 style="color:var(--accent-color);" data-key="title_cat_bg">🏷️ Showcase Categories Banner Background</h3>
+                <div class="admin-form">
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_upload_bg">Upload Image/GIF/Video Background:</label>
+                        <input type="file" id="catBgFileInput" accept="image/*,video/*">
+                        <button class="update-item-btn" onclick="applyCategoryBannerBgUpload()" data-key="btn_update_cat_bg">UPDATE CATEGORY BG</button>
+                        <button class="remove-bg-btn" onclick="removeContainerBackground('heroBanner')" data-key="btn_remove_bg">🗑️ Remove Background</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID SECTION BACKGROUND -->
+            <div class="admin-box">
+                <h3 style="color:var(--accent-color);" data-key="title_grid_bg">🛍️ Product Grid Section Background</h3>
+                <div class="admin-form">
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_upload_bg">Upload Image/GIF/Video Background:</label>
+                        <input type="file" id="gridBgFileInput" accept="image/*,video/*">
+                        <button class="update-item-btn" onclick="applyGridBgUpload()" data-key="btn_update_grid_bg">UPDATE GRID BG</button>
+                        <button class="remove-bg-btn" onclick="removeContainerBackground('productGridWrapper')" data-key="btn_remove_bg">🗑️ Remove Background</button>
+                    </div>
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_wave_bg">Wave Animated Background:</label>
+                        <button class="history-btn" style="width:100%; margin-top:5px;" onclick="toggleAnimatedGridBg()" data-key="btn_toggle_wave">TOGGLE WAVE EFFECT</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOGOS -->
+            <div class="admin-box">
+                <h3 style="color:var(--accent-color);" data-key="title_logo_control">👑 Logos & Size Control</h3>
+                <div class="admin-form">
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_upload_main_logo">Upload Main Logo Image:</label>
+                        <input type="file" id="mainLogoFileInput" accept="image/*">
+                        <button class="update-item-btn" onclick="applyMainLogoUpload()" data-key="btn_update_logo">UPDATE MAIN LOGO</button>
+                    </div>
+                    <div class="range-group">
+                        <label><span data-key="lbl_main_logo_size">Main Logo Size:</span> <span id="mainLogoImgSizeVal">90px</span></label>
+                        <input type="range" min="40" max="250" value="90" oninput="adjustMainLogoImgSize(this.value)">
+                    </div>
+                    <div>
+                        <label style="font-size: 9px;" data-key="lbl_upload_nav_logo">Upload Top Navbar Logo:</label>
+                        <input type="file" id="navLogoFileInput" accept="image/*">
+                        <button class="update-item-btn" onclick="applyNavLogoUpload()" data-key="btn_update_logo">UPDATE NAVBAR LOGO</button>
+                    </div>
+                    <div class="range-group">
+                        <label><span data-key="lbl_nav_logo_size">Top Navbar Logo Size:</span> <span id="navLogoSizeVal">50px</span></label>
+                        <input type="range" min="30" max="180" value="50" oninput="adjustNavLogoSize(this.value)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCTS ADD -->
+            <div class="admin-box">
+                <h3 data-key="add_product">+ Add New Product</h3>
+                <div class="admin-form">
+                    <input type="text" id="newTitle" placeholder="Product Name">
+                    <input type="number" id="newPrice" placeholder="Price (DH)">
+                    <select id="newGender">
+                        <option value="men">⚡ Men (الدراري)</option>
+                        <option value="women">✨ Women (البنات)</option>
+                        <option value="unisex">🔥 Unisex (الجميع)</option>
+                    </select>
+                    <select id="newCategory">
+                        <option value="hoodie" data-key="cat_hoodie">Hoodie</option>
+                        <option value="tshirt" data-key="cat_tshirt">T-Shirt</option>
+                        <option value="custom" data-key="cat_custom">Custom Order</option>
+                    </select>
+                    <div>
+                        <label style="font-size: 9px;" data-key="upload_img">Upload Image:</label>
+                        <input type="file" id="newImgFile" accept="image/*">
+                    </div>
+                    <button class="add-btn" onclick="addNewProduct()" data-key="btn_add_prod">+ Add Product to Store</button>
+                </div>
+            </div>
+
+            <div class="admin-box">
+                <h3 data-key="add_design">+ Add New Design</h3>
+                <div class="admin-form">
+                    <input type="text" id="newDesignName" placeholder="Design Name">
+                    <div>
+                        <label style="font-size: 9px;" data-key="upload_design">Upload Design Image:</label>
+                        <input type="file" id="newDesignImgFile" accept="image/*">
+                    </div>
+                    <button class="add-btn" onclick="addNewDesign()" data-key="btn_add_design">+ Add Design Option</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE PREVIEW FULL SITE FLOATING SCREEN -->
+    <div class="admin-live-preview-box" id="adminPreviewBox">
+        <div class="preview-header">
+            <span data-key="btn_preview">👁️ Live Store Preview</span>
+            <small style="cursor:pointer;" onclick="toggleLivePreviewWindow()">✖</small>
+        </div>
+        <div class="preview-content-area" id="livePreviewContainer"></div>
+    </div><script>
+        let globalSelectedDesignName = "";
+        let cartCount = 0;
+        let historyStack = [];
+        let historyStep = -1;
+        let isPreviewVisibleManually = false;
+        let activeGenderFilter = 'all';
+        let activeCategoryFilter = 'all';
+
+        function closeSplashGate() {
+            const doorLeft = document.getElementById('doorLeft');
+            const doorRight = document.getElementById('doorRight');
+            const splashContent = document.getElementById('splashContent');
+            const splashGate = document.getElementById('splashGate');
+
+            if (splashContent) {
+                splashContent.style.opacity = '0';
+                splashContent.style.transform = 'scale(0.8)';
+            }
+
+            setTimeout(() => {
+                if (doorLeft && doorRight) {
+                    doorLeft.style.transform = 'translateX(-100%)';
+                    doorRight.style.transform = 'translateX(100%)';
+                }
+            }, 300);
+
+            setTimeout(() => {
+                if (splashGate) {
+                    splashGate.style.display = 'none';
+                }
+            }, 1500);
+        }
+
+        function toggleLivePreviewWindow() {
+            const previewBox = document.getElementById('adminPreviewBox');
+            if (previewBox) {
+                isPreviewVisibleManually = !isPreviewVisibleManually;
+                previewBox.style.display = isPreviewVisibleManually ? 'flex' : 'none';
+                if(isPreviewVisibleManually) syncLivePreview();
+            }
+        }
+
+        function saveState() {
+            historyStack = historyStack.slice(0, historyStep + 1);
+            const topLogoImg = document.getElementById('topNavbarLogo');
+            const state = {
+                products: JSON.parse(JSON.stringify(products)),
+                designs: JSON.parse(JSON.stringify(designs)),
+                tagline: document.getElementById('taglineText').textContent,
+                heroTitle: document.getElementById('heroTitleText').textContent,
+                heroDesc: document.getElementById('heroDescText').textContent,
+                heroTitleColor: document.getElementById('heroTitleText').style.color,
+                heroDescColor: document.getElementById('heroDescText').style.color,
+                navLogoSize: topLogoImg ? topLogoImg.style.height : '50px',
+                mainLogoSize: document.getElementById('imgMainLogo').style.height,
+                titleSize: document.getElementById('textMainLogo').style.fontSize,
+                taglineSize: document.getElementById('taglineText').style.fontSize
+            };
+            historyStack.push(state);
+            historyStep++;
+            updateHistoryButtons();
+            syncLivePreview();
+        }
+
+        function undo() {
+            if (historyStep > 0) {
+                historyStep--;
+                applyState(historyStack[historyStep]);
+            }
+        }
+
+        function redo() {
+            if (historyStep < historyStack.length - 1) {
+                historyStep++;
+                applyState(historyStack[historyStep]);
+            }
+        }
+
+        function applyState(state) {
+            products = JSON.parse(JSON.stringify(state.products));
+            designs = JSON.parse(JSON.stringify(state.designs));
+            document.getElementById('taglineText').textContent = state.tagline;
+            document.getElementById('heroTitleText').textContent = state.heroTitle;
+            document.getElementById('heroDescText').textContent = state.heroDesc;
+            
+            if(state.heroTitleColor) document.getElementById('heroTitleText').style.color = state.heroTitleColor;
+            if(state.heroDescColor) document.getElementById('heroDescText').style.color = state.heroDescColor;
+
+            const topLogoImg = document.getElementById('topNavbarLogo');
+            if(topLogoImg && state.navLogoSize) topLogoImg.style.height = state.navLogoSize;
+            if(state.mainLogoSize) document.getElementById('imgMainLogo').style.height = state.mainLogoSize;
+            if(state.titleSize) document.getElementById('textMainLogo').style.fontSize = state.titleSize;
+            if(state.taglineSize) document.getElementById('taglineText').style.fontSize = state.taglineSize;
+
+            renderDesigns();
+            renderProducts();
+            updateHistoryButtons();
+            syncLivePreview();
+        }
+
+        function commitChanges() {
+            alert(currentLang === 'ar' ? "تم حفظ جميع التعديلات بنجاح!" : "All changes have been successfully validated and saved to the store!");
+        }
+
+        function updateHistoryButtons() {
+            document.getElementById('undoBtn').disabled = (historyStep <= 0);
+            document.getElementById('redoBtn').disabled = (historyStep >= historyStack.length - 1);
+        }
+
+        function syncLivePreview() {
+            const previewContainer = document.getElementById('livePreviewContainer');
+            if (!previewContainer || !isPreviewVisibleManually) return;
+
+            const logoText = document.getElementById('textMainLogo').textContent;
+            const taglineText = document.getElementById('taglineText').textContent;
+            const heroTitle = document.getElementById('heroTitleText').textContent;
+            const heroDesc = document.getElementById('heroDescText').textContent;
+
+            previewContainer.innerHTML = `
+                <div style="text-align: center; padding: 8px; border-bottom: 1px solid var(--card-border);">
+                    <div style="font-family: var(--title-font); font-weight: 900; font-size: 16px; color: var(--text-color);">${logoText}</div>
+                    <div style="font-family: var(--tagline-font); font-size: 8px; font-weight: 800; color: var(--accent-color); margin-top: 2px;">${taglineText}</div>
+                </div>
+                <div style="padding: 10px; margin: 8px 0; background: var(--hero-bg-color); border-radius: 6px; text-align: center;">
+                    <div style="font-family: var(--hero-title-font); font-size: 14px; font-weight: bold; color: ${document.getElementById('heroTitleText').style.color || '#1a1a1a'};">${heroTitle}</div>
+                    <div style="font-size: 9px; color: ${document.getElementById('heroDescText').style.color || '#555'}; margin-top: 3px;">${heroDesc}</div>
+                </div>
+                <div style="font-size: 10px; font-weight: bold; text-align: center; margin: 8px 0; text-transform: uppercase;">${translations[currentLang]['section2']}</div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                    ${products.map(p => `
+                        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; padding: 6px; text-align: center;">
+                            <img src="${p.img}" style="width: 100%; height: 60px; object-fit: contain; border-radius: 4px;">
+                            <div style="font-size: 8px; font-weight: bold; margin-top: 2px;">${p.customTitle}</div>
+                            <div style="font-size: 8px; color: var(--accent-color); font-weight: bold;">${p.price} DH</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function updateTaglineText() {
+            const input = document.getElementById('customTaglineInput');
+            const taglineEl = document.getElementById('taglineText');
+            if (input && taglineEl && input.value.trim() !== "") {
+                taglineEl.textContent = input.value.trim();
+                saveState();
+            }
+        }
+
+        function previewFontChange(fontVal) {
+            document.documentElement.style.setProperty('--tagline-font', fontVal);
+        }
+
+        function updateHeroTextsAndColors() {
+            const titleInput = document.getElementById('customHeroTitleInput');
+            const descInput = document.getElementById('customHeroDescInput');
+            const titleColor = document.getElementById('heroTitleColorInput').value;
+            const descColor = document.getElementById('heroDescColorInput').value;
+
+            const heroTitleEl = document.getElementById('heroTitleText');
+            const heroDescEl = document.getElementById('heroDescText');
+
+            if (titleInput && titleInput.value.trim() !== "") heroTitleEl.textContent = titleInput.value.trim();
+            if (descInput && descInput.value.trim() !== "") heroDescEl.textContent = descInput.value.trim();
+
+            if (heroTitleEl) heroTitleEl.style.color = titleColor;
+            if (heroDescEl) heroDescEl.style.color = descColor;
+
+            saveState();
+        }
+
+        function setContainerBackground(containerId, file) {
+            const container = document.getElementById(containerId);
+            if (!container || !file) return;
+
+            removeContainerBackground(containerId);
+
+            const isVideo = file.type.startsWith('video/');
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                if (isVideo) {
+                    const video = document.createElement('video');
+                    video.src = e.target.result;
+                    video.autoplay = true;
+                    video.loop = true;
+                    video.muted = true;
+                    video.playsInline = true;
+                    video.className = 'bg-layer';
+                    container.appendChild(video);
+                } else {
+                    container.style.backgroundImage = `url('${e.target.result}')`;
+                }
+                saveState();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeContainerBackground(containerId) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                const existingBg = container.querySelector('.bg-layer');
+                if (existingBg) existingBg.remove();
+                container.style.backgroundImage = 'none';
+                container.classList.remove('animated-wave-bg');
+                saveState();
+            }
+        }
+
+        function applyHeroBgUpload() {
+            const fileInput = document.getElementById('heroBgFileInput');
+            if (fileInput && fileInput.files[0]) setContainerBackground('heroContentBox', fileInput.files[0]);
+        }
+
+        function applyCategoryBannerBgUpload() {
+            const fileInput = document.getElementById('catBgFileInput');
+            if (fileInput && fileInput.files[0]) setContainerBackground('heroBanner', fileInput.files[0]);
+        }
+
+        function applyGridBgUpload() {
+            const fileInput = document.getElementById('gridBgFileInput');
+            if (fileInput && fileInput.files[0]) setContainerBackground('productGridWrapper', fileInput.files[0]);
+        }
+
+        function toggleAnimatedHeroBg() {
+            document.getElementById('heroContentBox').classList.toggle('animated-wave-bg');
+            saveState();
+        }
+
+        function toggleAnimatedGridBg() {
+            document.getElementById('productGridWrapper').classList.toggle('animated-wave-bg');
+            saveState();
+        }
+
+        function adjustNavLogoSize(val) {
+            const logoImg = document.getElementById('topNavbarLogo');
+            const logoText = document.getElementById('topNavbarTextLogo');
+            const valLabel = document.getElementById('navLogoSizeVal');
+            
+            if (logoImg && logoImg.style.display !== 'none') {
+                logoImg.style.height = val + 'px';
+            } else if (logoText) {
+                logoText.style.fontSize = Math.round(val * 0.45) + 'px';
+            }
+            if (valLabel) valLabel.textContent = val + 'px';
+            saveState();
+        }
+
+        function adjustMainLogoImgSize(val) {
+            const imgLogo = document.getElementById('imgMainLogo');
+            const textLogo = document.getElementById('textMainLogo');
+            const valLabel = document.getElementById('mainLogoImgSizeVal');
+            
+            if (imgLogo && imgLogo.style.display !== 'none') {
+                imgLogo.style.height = val + 'px';
+            } else if (textLogo) {
+                textLogo.style.fontSize = Math.round(val * 0.65) + 'px';
+            }
+            if (valLabel) valLabel.textContent = val + 'px';
+            saveState();
+        }
+
+        function adjustTaglineSize(val) {
+            document.getElementById('taglineText').style.fontSize = val + 'px';
+            document.getElementById('taglineSizeVal').textContent = val + 'px';
+            saveState();
+        }
+
+        const translations = {
+            en: {
+                nav_home: "Home", nav_men: "Men", nav_women: "Women", nav_shop: "All", nav_designs: "Designs", nav_admin: "Admin",
+                hero_title: "NEW SEASON DROP", hero_desc: "Explore our latest streetwear collection crafted for exclusivity.", shop_now: "EXPLORE COLLECTION",
+                tagline: "STREETWEAR APPAREL & LIMITED DROPS", section1: "Select Available Design", section2: "Choose Apparel & Category",
+                gender_all: "🔥 All", gender_men: "⚡ Men", gender_women: "✨ Women",
+                cat_all: "All Types", cat_hoodie: "Hoodies", cat_tshirt: "T-Shirts", cat_custom: "Custom Orders",
+                admin_panel: "⚙ Owner Management Panel", add_product: "+ Add New Product", add_design: "+ Add New Design",
+                upload_img: "Upload Image:", upload_design: "Upload Design Image:", btn_add_prod: "+ Add Product to Store",
+                btn_add_design: "+ Add Design Option", cust: "Custom", design: "Design",
+                size_age: "Size / Age:", kids: "Kids", adults: "Adults", custom_img_upload: "Custom Image Upload:",
+                order_whatsapp: "Order via WhatsApp", btn_enter: "ENTER STORE", btn_undo: "↩ UNDO", btn_redo: "↪ REDO",
+                btn_preview: "👁️ PREVIEW SCREEN", btn_save: "✔ SAVE CHANGES", title_tagline_customizer: "✍️ SUB-TITLE TAGLINE CUSTOMIZER",
+                lbl_select_font: "SELECT FONT (20 FAMOUS FONTS):", lbl_tagline_size: "TAGLINE SIZE:", btn_update_tagline: "UPDATE TAGLINE",
+                title_hero_control: "🌟 HERO TITLE & DESCRIPTION CONTROL", lbl_hero_title: "HERO TITLE TEXT:", lbl_hero_desc: "HERO DESCRIPTION TEXT:",
+                btn_update_hero: "UPDATE HERO CONTENT", title_hero_bg: "🖼️ HERO SECTION BACKGROUND", lbl_upload_bg: "UPLOAD BACKGROUND:",
+                btn_update_bg: "UPDATE BG", btn_remove_bg: "🗑️ REMOVE BACKGROUND", lbl_wave_bg: "WAVE ANIMATED BACKGROUND:", btn_toggle_wave: "TOGGLE WAVE EFFECT",
+                title_cat_bg: "🏷️ SHOWCASE CATEGORIES BANNER BACKGROUND", btn_update_cat_bg: "UPDATE CATEGORY BG", title_grid_bg: "🛍️ PRODUCT GRID BACKGROUND",
+                btn_update_grid_bg: "UPDATE GRID BG", title_logo_control: "👑 LOGOS & SIZE CONTROL", lbl_upload_main_logo: "UPLOAD MAIN LOGO:", btn_update_logo: "UPDATE LOGO",
+                lbl_main_logo_size: "MAIN LOGO SIZE:", lbl_upload_nav_logo: "UPLOAD NAVBAR LOGO:", lbl_nav_logo_size: "NAVBAR LOGO SIZE:"
+            },
+            fr: {
+                nav_home: "Accueil", nav_men: "Hommes", nav_women: "Femmes", nav_shop: "Tous", nav_designs: "Designs", nav_admin: "Admin",
+                hero_title: "NOUVELLE COLLECTION", hero_desc: "Découvrez notre dernière collection streetwear.", shop_now: "EXPLORER LA COLLECTION",
+                tagline: "STREETWEAR & ÉDITIONS LIMITÉES", section1: "SÉLECTIONNEZ LE DESIGN", section2: "CHOISISSEZ LA CATÉGORIE",
+                gender_all: "🔥 Tous", gender_men: "⚡ Hommes", gender_women: "✨ Femmes",
+                cat_all: "Tous Types", cat_hoodie: "Sweats", cat_tshirt: "T-Shirts", cat_custom: "Sur Mesure",
+                admin_panel: "⚙ Panneau de Gestion", add_product: "+ Ajouter un Produit", add_design: "+ Ajouter un Design",
+                upload_img: "Télécharger L'Image:", upload_design: "Image du Design:", btn_add_prod: "+ Ajouter au Magasin",
+                btn_add_design: "+ Ajouter le Design", cust: "Personnalisé", design: "Design",
+                size_age: "Taille / Âge:", kids: "Enfants", adults: "Adultes", custom_img_upload: "Image Personnalisée:",
+                order_whatsapp: "Commander via WhatsApp", btn_enter: "ENTRER DANS LA BOUTIQUE", btn_undo: "↩ ANNULER", btn_redo: "↪ RÉTABLIR",
+                btn_preview: "👁️ APERÇU EN DIRECT", btn_save: "✔ ENREGISTRER", title_tagline_customizer: "✍️ PERSONNALISER LE SOUS-TITRE",
+                lbl_select_font: "SÉLECTIONNER LA POLICE:", lbl_tagline_size: "TAILLE DU SOUS-TITRE:", btn_update_tagline: "METTRE À JOUR SOUS-TITRE",
+                title_hero_control: "🌟 CONTRÔLE HERO", lbl_hero_title: "TITRE HERO:", lbl_hero_desc: "DESCRIPTION HERO:",
+                btn_update_hero: "METTRE À JOUR HERO", title_hero_bg: "🖼️ ARRIÈRE-PLAN HERO", lbl_upload_bg: "TÉLÉCHARGER ARRIÈRE-PLAN:",
+                btn_update_bg: "METTRE À JOUR BG HERO", btn_remove_bg: "🗑️ SUPPRIMER L'ARRIÈRE-PLAN", lbl_wave_bg: "EFFET ANIMÉ WAVE:", btn_toggle_wave: "ACTIVER EFFET WAVE",
+                title_cat_bg: "🏷️ ARRIÈRE-PLAN CATEGORIES", btn_update_cat_bg: "METTRE À JOUR BG CAT", title_grid_bg: "🛍️ ARRIÈRE-PLAN PRODUITS",
+                btn_update_grid_bg: "METTRE À JOUR BG GRILLE", title_logo_control: "👑 CONTRÔLE DES LOGOS", lbl_upload_main_logo: "LOGO PRINCIPAL:", btn_update_logo: "METTRE À JOUR LOGO",
+                lbl_main_logo_size: "TAILLE LOGO PRINCIPAL:", lbl_upload_nav_logo: "LOGO NAVBAR:", lbl_nav_logo_size: "TAILLE LOGO NAVBAR:"
+            },
+            ar: {
+                nav_home: "الرئيسية", nav_men: "الدراري (رجال)", nav_women: "البنات (نساء)", nav_shop: "الكل", nav_designs: "التصاميم", nav_admin: "الإدارة",
+                hero_title: "التشكيلة الجديدة", hero_desc: "استكشف أحدث قطع الستريت وير والمصممة بحصرية تامة.", shop_now: "استكشف التشكيلة",
+                tagline: "أزياء ستريت وير وإصدارات محدودة", section1: "اختر التصميم المتاح", section2: "اختر نوع الملابس والقسم",
+                gender_all: "🔥 الكل", gender_men: "⚡ الدراري (رجال)", gender_women: "✨ البنات (نساء)",
+                cat_all: "جميع الأنواع", cat_hoodie: "هوديز", cat_tshirt: "تيشيرتات", cat_custom: "طلبات خاصة",
+                admin_panel: "⚙ لوحة تحكم المالك", add_product: "+ إضافة منتج جديد", add_design: "+ إضافة تصميم جديد",
+                upload_img: "رفع الصورة:", upload_design: "رفع صورة التصميم:", btn_add_prod: "+ إضافة المنتج للمتجر",
+                btn_add_design: "+ إضافة خيار التصميم", cust: "مخصص", design: "تصميم",
+                size_age: "المقاس / العمر:", kids: "أطفال", adults: "بالغين", custom_img_upload: "رفع صورة مخصصة:",
+                order_whatsapp: "اطلب عبر واتساب", btn_enter: "دخول المتجر", btn_undo: "↩ تراجع", btn_redo: "↪ إعادة",
+                btn_preview: "👁️ المعاينة الفورية", btn_save: "✔ حفظ التغييرات", title_tagline_customizer: "✍️ مخصص الشعار الفرعي",
+                lbl_select_font: "اختر نوع الخط (20 خط):", lbl_tagline_size: "حجم النص الفرعي:", btn_update_tagline: "تحديث النص الفرعي",
+                title_hero_control: "🌟 التحكم بنصوص وألوان الهيرو", lbl_hero_title: "عنوان الهيرو الرئيسي:", lbl_hero_desc: "وصف الهيرو الفرعي:",
+                btn_update_hero: "تحديث محتوى الهيرو والألوان", title_hero_bg: "🖼️ خلفية قسم الهيرو", lbl_upload_bg: "رفع خلفية ميديا:",
+                btn_update_bg: "تحديث خلفية الهيرو", btn_remove_bg: "🗑️ مسح الخلفية", lbl_wave_bg: "الخلفية المتحركة:", btn_toggle_wave: "تفعيل / إلغاء الأمواج",
+                title_cat_bg: "🏷️ خلفية بانر عرض الفئات", btn_update_cat_bg: "تحديث خلفية الفئات", title_grid_bg: "🛍️ خلفية قسم عرض المنتجات",
+                btn_update_grid_bg: "تحديث خلفية شبكة المنتجات", title_logo_control: "👑 التحكم بالشعارات وأحجامها", lbl_upload_main_logo: "رفع اللوجو الرئيسي:", btn_update_logo: "تحديث اللوجو",
+                lbl_main_logo_size: "حجم اللوجو الرئيسي:", lbl_upload_nav_logo: "رفع لوجو الشريط العلوي:", lbl_nav_logo_size: "حجم لوجو الشريط العلوي:"
+            },
+            es: {
+                nav_home: "Inicio", nav_men: "Hombres", nav_women: "Mujeres", nav_shop: "Todo", nav_designs: "Diseños", nav_admin: "Admin",
+                hero_title: "NUEVA COLECCIÓN", hero_desc: "Explora nuestra última colección de ropa urbana.", shop_now: "EXPLORAR COLECCIÓN",
+                tagline: "ROPA URBANA Y EDICIONES LIMITADAS", section1: "SELECCIONE EL DISEÑO", section2: "ELIJA LA CATEGORÍA",
+                gender_all: "🔥 Todo", gender_men: "⚡ Hombres", gender_women: "✨ Mujeres",
+                cat_all: "Todos los Tipos", cat_hoodie: "Sudaderas", cat_tshirt: "Camisetas", cat_custom: "Pedidos Especiales",
+                admin_panel: "⚙ Panel de Gestión", add_product: "+ Añadir Producto", add_design: "+ Añadir Diseño",
+                upload_img: "Subir Imagen:", upload_design: "Imagen del Diseño:", btn_add_prod: "+ Añadir a la Tienda",
+                btn_add_design: "+ Añadir Opción", cust: "Personalizado", design: "Diseño",
+                size_age: "Talla / Edad:", kids: "Niños", adults: "Adultos", custom_img_upload: "Imagen Personalizada:",
+                order_whatsapp: "Pedir por WhatsApp", btn_enter: "ENTRAR A LA TIENDA", btn_undo: "↩ DESHACER", btn_redo: "↪ REHACER",
+                btn_preview: "👁️ VISTA PREVIA", btn_save: "✔ GUARDAR CAMBIOS", title_tagline_customizer: "✍️ PERSONALIZAR SUBTÍTULO",
+                lbl_select_font: "SELECCIONAR FUENTE:", lbl_tagline_size: "TAMAÑO DE SUBTÍTULO:", btn_update_tagline: "ACTUALIZAR SUBTÍTULO",
+                title_hero_control: "🌟 CONTROL HERO", lbl_hero_title: "TÍTULO HERO:", lbl_hero_desc: "DESCRIPCIÓN HERO:",
+                btn_update_hero: "ACTUALIZAR HERO", title_hero_bg: "🖼️ FONDO DE SECCIÓN HERO", lbl_upload_bg: "SUBIR FONDO:",
+                btn_update_bg: "ACTUALIZAR FONDO HERO", btn_remove_bg: "🗑️ ELIMINAR FONDO", lbl_wave_bg: "FONDO ANIMADO WAVE:", btn_toggle_wave: "ACTIVAR EFECTO WAVE",
+                title_cat_bg: "🏷️ FONDO BANNER CATEGORÍAS", btn_update_cat_bg: "ACTUALIZAR FONDO CAT", title_grid_bg: "🛍️ FONDO SECCIÓN PRODUCTOS",
+                btn_update_grid_bg: "ACTUALIZAR FONDO GRID", title_logo_control: "👑 CONTROL DE LOGOS Y TAMAÑOS", lbl_upload_main_logo: "SUBIR LOGO PRINCIPAL:", btn_update_logo: "ACTUALIZAR LOGO",
+                lbl_main_logo_size: "TAMAÑO LOGO PRINCIPAL:", lbl_upload_nav_logo: "SUBIR LOGO NAVBAR:", lbl_nav_logo_size: "TAMAÑO LOGO NAVBAR:"
+            }
+        };
+
+        let designs = [
+            { id: 1, name: "3IFRIT GOLD", img: "https://via.placeholder.com/150/8c6d3b/ffffff?text=3IFRIT" },
+            { id: 2, name: "STREET PRINT", img: "https://via.placeholder.com/150/1a1a1a/ffffff?text=PRINT" }
+        ];
+
+        let products = [
+            { id: 101, customTitle: "Heavy Oversized Zip Hoodie", price: 320, category: "hoodie", gender: "men", img: "https://via.placeholder.com/300/eadecc/1a1a1a?text=Men+Hoodie" },
+            { id: 102, customTitle: "Cropped Vintage Hoodie", price: 290, category: "hoodie", gender: "women", img: "https://via.placeholder.com/300/f4efe6/8c6d3b?text=Women+Hoodie" },
+            { id: 103, customTitle: "Heavy Weight Street Tee", price: 220, category: "tshirt", gender: "men", img: "https://via.placeholder.com/300/dfd3c3/1a1a1a?text=Men+Tee" },
+            { id: 104, customTitle: "Oversized Minimalist Tee", price: 210, category: "tshirt", gender: "women", img: "https://via.placeholder.com/300/eadecc/8c6d3b?text=Women+Tee" }
+        ];
+
+        let currentLang = 'en';
+
+        function removeWhiteBackground(imageSrc, callback) {
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function () {
+                const canvas = document.createElement("canvas");
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0);
+
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    if (data[i] > 195 && data[i + 1] > 195 && data[i + 2] > 195) {
+                        data[i + 3] = 0;
+                    }
+                }
+
+                ctx.putImageData(imageData, 0, 0);
+                callback(canvas.toDataURL());
+            };
+            img.src = imageSrc;
+        }
+
+        function applyMainLogoUpload() {
+            const fileInput = document.getElementById('mainLogoFileInput');
+            if (fileInput && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    removeWhiteBackground(e.target.result, function(transparentLogoUrl) {
+                        const imgLogo = document.getElementById('imgMainLogo');
+                        const textLogo = document.getElementById('textMainLogo');
+                        if (imgLogo && textLogo) {
+                            imgLogo.src = transparentLogoUrl;
+                            imgLogo.style.display = 'inline-block';
+                            textLogo.style.display = 'none';
+                            saveState();
+                        }
+                    });
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        function applyNavLogoUpload() {
+            const fileInput = document.getElementById('navLogoFileInput');
+            if (fileInput && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    removeWhiteBackground(e.target.result, function(transparentLogoUrl) {
+                        const topLogoImg = document.getElementById('topNavbarLogo');
+                        const topLogoText = document.getElementById('topNavbarTextLogo');
+                        if (topLogoImg) {
+                            topLogoImg.src = transparentLogoUrl;
+                            topLogoImg.style.display = 'inline-block';
+                            if (topLogoText) topLogoText.style.display = 'none';
+                            saveState();
+                        }
+                    });
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        function changeLanguage() {
+            const selector = document.getElementById('langSelector');
+            if(!selector) return;
+            currentLang = selector.value;
+
+            if (currentLang === 'ar') {
+                document.body.style.direction = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.style.direction = 'ltr';
+                document.body.style.textAlign = 'left';
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+
+            renderDesigns();
+            renderProducts();
+            syncLivePreview();
+        }
+
+        function scrollToCategory(cat) {
+            filterCategory(cat);
+            const pGrid = document.getElementById('productGrid');
+            if(pGrid) pGrid.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderDesigns() {
+            const container = document.getElementById('designsContainer');
+            if(!container) return;
+            container.innerHTML = `
+                <div class="design-card ${globalSelectedDesignName === '' ? 'selected' : ''}" onclick="selectDesign('', 'Standard', this)">
+                    <div class="design-img-box" style="background:var(--bg-color); font-weight:bold; font-size:9px; color:#666;">${translations[currentLang]['cust']}</div>
+                    <span>${translations[currentLang]['cust']}</span>
+                </div>
+            `;
+            designs.forEach(d => {
+                container.innerHTML += `
+                    <div class="design-card ${globalSelectedDesignName === d.name ? 'selected' : ''}" onclick="selectDesign('${d.img}', '${d.name}', this)">
+                        <div class="design-img-box">
+                            <img src="${d.img}" alt="${d.name}">
+                        </div>
+                        <span>${d.name}</span>
+                        <button class="delete-item-btn" onclick="deleteDesign(event, ${d.id})">🗑 Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+        function selectDesign(imgUrl, name, element) {
+            globalSelectedDesignName = name;
+            document.querySelectorAll('.design-card').forEach(c => c.classList.remove('selected'));
+            if(element) element.classList.add('selected');
+
+            const orderBox = document.getElementById('designOrderBox');
+            if (name !== 'Standard' && name !== '') {
+                orderBox.style.display = 'block';
+                document.querySelector('#selectedDesignTitleName span').textContent = name;
+            } else {
+                orderBox.style.display = 'none';
+            }
+        }
+
+        function orderDesignDirectWhatsApp() {
+            const apparelType = document.getElementById('designApparelType').value;
+            const size = document.getElementById('designApparelSize').value;
+            const phone = "212608333882";
+
+            const msg = encodeURIComponent(`Hello 3IFRIT!\n\nI want to order custom design:\nDesign Name: ${globalSelectedDesignName}\nApparel Type: ${apparelType}\nSize/Age: ${size}`);
+            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        }
+
+        function filterGender(gender, btnElement) {
+            activeGenderFilter = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+            renderProducts();
+        }
+
+        function filterCategory(cat, btnElement) {
+            activeCategoryFilter = cat;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            let list = products;
+            
+            if (activeGenderFilter !== 'all') {
+                list = list.filter(p => p.gender === activeGenderFilter || p.gender === 'unisex');
+            }
+
+            if (activeCategoryFilter !== 'all') {
+                list = list.filter(p => p.category === activeCategoryFilter);
+            }
+
+            list.forEach(p => {
+                const pTitle = p.customTitle;
+                const genderTagText = p.gender === 'men' ? '⚡ Men' : (p.gender === 'women' ? '✨ Women' : '🔥 Unisex');
+
+                grid.innerHTML += `
+                    <div class="card">
+                        <span class="gender-tag">${genderTagText}</span>
+                        <div class="preview-area">
+                            <img id="img-${p.id}" class="product-img" src="${p.img}" alt="${pTitle}">
+                        </div>
+                        <div class="card-title">${pTitle}</div>
+                        <div class="card-price">${p.price}.00 DH</div>
+
+                        <div class="input-group">
+                            <label>${translations[currentLang]['size_age']}</label>
+                            <select id="size-${p.id}">
+                                <optgroup label="${translations[currentLang]['kids']}">
+                                    <option value="4-6 Years">4 - 6 Years</option>
+                                    <option value="8-10 Years">8 - 10 Years</option>
+                                    <option value="12-14 Years">12 - 14 Years</option>
+                                </optgroup>
+                                <optgroup label="${translations[currentLang]['adults']}">
+                                    <option value="S">Small (S)</option>
+                                    <option value="M" selected>Medium (M)</option>
+                                    <option value="L">Large (L)</option>
+                                    <option value="XL">Extra Large (XL)</option>
+                                    <option value="XXL">2XL</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>${translations[currentLang]['custom_img_upload']}</label>
+                            <input type="file" accept="image/*" onchange="uploadOwnImage(event, ${p.id})">
+                        </div>
+
+                        <button class="order-btn" onclick="orderWhatsApp(${p.id})">${translations[currentLang]['order_whatsapp']}</button>
+                        <button class="delete-item-btn" onclick="deleteProduct(${p.id})">🗑 Delete Product</button>
+                    </div>
+                `;
+            });
+        }
+
+        function deleteProduct(id) {
+            if(confirm(currentLang === 'ar' ? "هل تريد حذف هذا المنتج؟" : "Delete this product?")) {
+                products = products.filter(p => p.id !== id);
+                renderProducts();
+                saveState();
+            }
+        }
+
+        function deleteDesign(event, id) {
+            event.stopPropagation();
+            if(confirm(currentLang === 'ar' ? "هل تريد حذف هذا التصميم؟" : "Delete this design?")) {
+                designs = designs.filter(d => d.id !== id);
+                renderDesigns();
+                saveState();
+            }
+        }
+
+        function uploadOwnImage(event, id) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const productImg = document.getElementById(`img-${id}`);
+                if(productImg) productImg.src = reader.result;
+            };
+            if (event.target.files && event.target.files[0]) {
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+
+        function orderWhatsApp(id) {
+            cartCount++;
+            const badge = document.getElementById('cartBadge');
+            if(badge) badge.textContent = cartCount;
+
+            const product = products.find(p => p.id === id);
+            if(!product) return;
+            const size = document.getElementById(`size-${id}`).value;
+            const phone = "212608333882";
+
+            const msg = encodeURIComponent(`Hello 3IFRIT!\n\nI want to order: ${product.customTitle}\nPrice: ${product.price} DH\nSection: ${product.gender.toUpperCase()}\nSize/Age: ${size}\nCategory: ${product.category.toUpperCase()}`);
+            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        }
+
+        function addNewProduct() {
+            const titleInput = document.getElementById('newTitle');
+            const priceInput = document.getElementById('newPrice');
+            const genderInput = document.getElementById('newGender');
+            const categoryInput = document.getElementById('newCategory');
+            const fileInput = document.getElementById('newImgFile');
+
+            if(!titleInput || !priceInput) return;
+
+            const title = titleInput.value;
+            const price = priceInput.value;
+            const gender = genderInput.value;
+            const category = categoryInput.value;
+
+            if(!title || !price) {
+                alert(currentLang === 'ar' ? "يرجى كتابة اسم المنتج والسعر!" : "Please write a Product Name and Price!");
+                return;
+            }
+
+            const processProduct = (imgSrc) => {
+                products.push({ id: Date.now(), customTitle: title, price: price, gender: gender, category: category, img: imgSrc });
+                renderProducts();
+                saveState();
+                titleInput.value = '';
+                priceInput.value = '';
+                if(fileInput) fileInput.value = '';
+            };
+
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    processProduct(e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                const defaultImg = "https://via.placeholder.com/300/eadecc/1a1a1a?text=" + encodeURIComponent(title);
+                processProduct(defaultImg);
+            }
+        }
+
+        function addNewDesign() {
+            const nameInput = document.getElementById('newDesignName');
+            const fileInput = document.getElementById('newDesignImgFile');
+
+            if(!nameInput) return;
+
+            const name = nameInput.value;
+
+            if(!name) {
+                alert(currentLang === 'ar' ? "يرجى كتابة اسم التصميم!" : "Please write Design Name!");
+                return;
+            }
+
+            const processDesign = (imgSrc) => {
+                designs.push({ id: Date.now(), name: name, img: imgSrc });
+                renderDesigns();
+                saveState();
+                nameInput.value = '';
+                if(fileInput) fileInput.value = '';
+            };
+
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    processDesign(e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                const defaultImg = "https://via.placeholder.com/150/8c6d3b/ffffff?text=" + encodeURIComponent(name);
+                processDesign(defaultImg);
+            }
+        }
+
+        window.onload = function() {
+            renderDesigns();
+            changeLanguage();
+            saveState();
+        };
+    </script>
+</body>
+</html>
