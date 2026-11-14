@@ -260,6 +260,7 @@
         .history-btn { background: var(--text-color); color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 10px; text-transform: uppercase; }
         .remove-bg-btn { background: #b91c1c; color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 9px; text-transform: uppercase; margin-top: 4px; }
         .save-btn { background: #16a34a; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 10px; text-transform: uppercase; }
+        .download-site-btn { background: #2563eb; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 10px; text-transform: uppercase; }
         .update-item-btn { background: var(--accent-color); color: #fff; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 800; cursor: pointer; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
 
         .range-group { display: flex; flex-direction: column; gap: 4px; background: var(--card-bg); padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); }
@@ -415,6 +416,7 @@
                 <button class="history-btn" id="redoBtn" onclick="redo()" disabled data-key="btn_redo">↪ Redo</button>
                 <button class="history-btn" style="background:var(--accent-color);" onclick="toggleLivePreviewWindow()" data-key="btn_preview">👁️ Preview Screen</button>
                 <button class="save-btn" onclick="commitChanges()" data-key="btn_save">✔ Save Changes</button>
+                <button class="download-site-btn" onclick="exportUpdatedSite()">📥 Download Updated Site</button>
             </div>
 
             <!-- TAGLINE CONTROL -->
@@ -701,7 +703,45 @@
         }
 
         function commitChanges() {
-            alert(currentLang === 'ar' ? "تم حفظ جميع التعديلات بنجاح!" : "All changes have been successfully validated and saved to the store!");
+            alert(currentLang === 'ar' ? "تم حفظ جميع التعديلات في الجلسة الحالية! لتحميل نسخة دائمة للمتجر اضغط على زر Download Updated Site." : "Changes saved locally! Click 'Download Updated Site' to export the file for GitHub.");
+        }
+
+        function exportUpdatedSite() {
+            const clone = document.documentElement.cloneNode(true);
+            
+            // Reset admin visibility in exported file so customers stay restricted
+            const adminSec = clone.querySelector('#adminSection');
+            if (adminSec) adminSec.style.display = 'none';
+            
+            const navAdmin = clone.querySelector('#navAdminItem');
+            if (navAdmin) navAdmin.style.display = 'none';
+            
+            const splash = clone.querySelector('#splashGate');
+            if (splash) splash.style.display = 'flex';
+            const splashContent = clone.querySelector('#splashContent');
+            if (splashContent) { splashContent.style.opacity = '1'; splashContent.style.transform = 'scale(1)'; }
+            const doorL = clone.querySelector('#doorLeft');
+            if (doorL) doorL.style.transform = 'translateX(0)';
+            const doorR = clone.querySelector('#doorRight');
+            if (doorR) doorR.style.transform = 'translateX(0)';
+
+            const previewBox = clone.querySelector('#adminPreviewBox');
+            if (previewBox) previewBox.style.display = 'none';
+
+            // Inject updated products & designs arrays directly into the script
+            let htmlContent = "<!DOCTYPE html>\n" + clone.outerHTML;
+            htmlContent = htmlContent.replace(/let designs = \[[\s\S]*?\];/, `let designs = ${JSON.stringify(designs, null, 4)};`);
+            htmlContent = htmlContent.replace(/let products = \[[\s\S]*?\];/, `let products = ${JSON.stringify(products, null, 4)};`);
+
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
 
         function updateHistoryButtons() {
